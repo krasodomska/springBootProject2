@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 
 
 public record Car(
-
+        @NotNull
         long id,
 
         @NotNull

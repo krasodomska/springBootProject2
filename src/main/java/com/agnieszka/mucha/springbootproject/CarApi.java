@@ -26,7 +26,8 @@ public class CarApi {
 
     @GetMapping(produces = {
             MediaType.APPLICATION_JSON_VALUE,
-            MediaType.APPLICATION_XML_VALUE})
+            MediaType.APPLICATION_XML_VALUE
+    })
     public List<Car> getCarList() {
         return carList;
     }
@@ -39,34 +40,36 @@ public class CarApi {
     @GetMapping("/{id}")
     public ResponseEntity<Car> getCarById(@PathVariable long id) {
         Car carById = CarController.getCarById(id, carList);
-        if (carById != null) return new ResponseEntity<>(carById, HttpStatus.OK);
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (carById == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(carById, HttpStatus.OK);
     }
 
     @GetMapping("/color/{color}")
     public ResponseEntity<List<Car>> getCarByColor(@PathVariable Color color) {
         List<Car> carByColor = CarController.getCarsByColor(color, carList);
-        if (!carByColor.isEmpty()) return new ResponseEntity<>(carByColor, HttpStatus.OK);
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (carByColor.isEmpty()) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(carByColor, HttpStatus.OK);
     }
 
     @DeleteMapping()
     public ResponseEntity deleteCar(@RequestParam long id) {
         Car carById = CarController.getCarById(id, carList);
-        if (carById != null) {
-            carList.remove(carById);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else return new ResponseEntity(HttpStatus.NOT_FOUND);
+        if (carById == null) return new ResponseEntity(HttpStatus.NOT_FOUND);
+
+        carList.remove(carById);
+        return new ResponseEntity<>(HttpStatus.OK);
+
     }
 
     @PutMapping()
     public ResponseEntity modCar(@RequestBody Car car) {
         Car carById = CarController.getCarById(car.id(), carList);
-        if (carById != null) {
-            carList.remove(carById);
-            carList.add(car);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else return new ResponseEntity(HttpStatus.NOT_FOUND);
+        if (carById == null) return new ResponseEntity(HttpStatus.NOT_FOUND);
+
+        carList.remove(carById);
+        carList.add(car);
+        return new ResponseEntity<>(HttpStatus.OK);
+
     }
 
 
