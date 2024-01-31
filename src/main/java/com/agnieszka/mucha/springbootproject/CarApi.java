@@ -2,10 +2,12 @@ package com.agnieszka.mucha.springbootproject;
 
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.print.attribute.standard.Media;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +25,9 @@ public class CarApi {
 
     }
 
-    @GetMapping
+    @GetMapping(produces = {
+            MediaType.APPLICATION_JSON_VALUE,
+            MediaType.APPLICATION_XML_VALUE})
     public List<Car> getCarList() {
         return carList;
     }
