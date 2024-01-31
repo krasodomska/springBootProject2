@@ -12,6 +12,5 @@ Przy starcie aplikacji mają dodawać się 3 pozycje.
 
 Dla ambitnych:
 
-    rozbuduj aplikacje o możliwość zwracania danych w postaci XML
+    rozbuduj aplikacje o możliwość zwracania danych w postaci XML - użyta bibliteka com.fasterxml.jackson.dataformat
     dodaj obsługę Swgger UI - swagger użyty dzięki OpenAPI 3.0 (nie jest konieczne dodawanie dodatkowego kodu) dostępne http://localhost:8080/swagger-ui/index.html#/car-api
-    zaimplementuj HATEOAS

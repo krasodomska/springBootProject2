@@ -15,7 +15,7 @@ public class CarController {
                 .orElse(null);
     }
 
-    public static List<Car> getCarsByColor(String color, List<Car> carList) {
+    public static List<Car> getCarsByColor(Color color, List<Car> carList) {
         return carList.stream()
                 .filter(car -> car.color().equals(color))
                 .collect(Collectors.toList());

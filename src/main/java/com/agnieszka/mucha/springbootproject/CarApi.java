@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.print.attribute.standard.Media;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,9 +18,9 @@ public class CarApi {
 
     public CarApi() {
         this.carList = new ArrayList<>();
-        carList.add(new Car(1, "Skoda", "Fabia", "Blue"));
-        carList.add(new Car(2, "Audi", "A4", "Silver"));
-        carList.add(new Car(3, "Seat", "Leon", "White"));
+        carList.add(new Car(1, "Skoda", "Fabia", Color.RED));
+        carList.add(new Car(2, "Audi", "A4", Color.GREEN));
+        carList.add(new Car(3, "Seat", "Leon", Color.BLUE));
 
     }
 
@@ -45,7 +44,7 @@ public class CarApi {
     }
 
     @GetMapping("/color/{color}")
-    public ResponseEntity<List<Car>> getCarByColor(@PathVariable String color) {
+    public ResponseEntity<List<Car>> getCarByColor(@PathVariable Color color) {
         List<Car> carByColor = CarController.getCarsByColor(color, carList);
         if (!carByColor.isEmpty()) return new ResponseEntity<>(carByColor, HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);

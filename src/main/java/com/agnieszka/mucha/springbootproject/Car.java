@@ -1,10 +1,7 @@
 package com.agnieszka.mucha.springbootproject;
 
 
-
 import jakarta.validation.constraints.NotNull;
-
-
 
 
 public record Car(
@@ -18,6 +15,6 @@ public record Car(
         String model,
 
         @NotNull
-        String color) {
+        Color color) {
 
 }
