@@ -1,13 +1,11 @@
 package com.agnieszka.mucha.springbootproject;
 
 
-import org.springframework.stereotype.Controller;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class CarController {
+public class CarService {
     public static Car getCarById(long id, List<Car> carList) {
         return carList.stream()
                 .filter(car -> car.id() == id)
