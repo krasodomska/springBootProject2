@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cars Api</title>
+    <style>
+        body{
+            padding: 50px;
+        }
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+            padding: 50px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 16px;
+        }
+
+        th {
+            border-bottom: 2px solid saddlebrown;
+
+        }
+
+        tr:nth-child(even) {
+            background-color: bisque;
+        }
+
+        form{
+            padding: 50px;
+        }
+
+        input[type=text], select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit] {
+            width: 100%;
+            background-color: saddlebrown;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: saddlebrown;
+        }
+
+    </style>
+</head>
+<body>
+<h2>Cars from my collection</h2>
+<p>List of car shows the base information</p>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Brand</th>
+        <th>Model</th>
+        <th>Color</th>
+    </tr>
+    <tr th:each="car: ${cars}">
+        <td th:text="${car.id()}"></td>
+        <td th:text="${car.brand()}"></td>
+        <td th:text="${car.model()}"></td>
+        <td th:text="${car.color()}"></td>
+    </tr>
+</table>
+
+
+
+<form th:action="@{/cars/form}" th:object="${newCar}" method="POST">
+    <h2>Add Car</h2>
+    <label>Id:</label><br>
+    <input type="text"  th:field="*{id}"><br>
+
+    <label >Brand:</label><br>
+    <input type="text"  th:field="*{brand}"><br>
+
+    <label >Model:</label><br>
+    <input type="text" th:field="*{model}"><br>
+
+    <label>Choose a car:</label> <br>
+    <select th:field="*{color}">
+        <option value="RED">red</option>
+        <option value="GREEN">green</option>
+        <option value="BLUE">blue</option>
+        <option value="MAGENTA">magenta</option>
+    </select>
+
+
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
+
+
+<form th:action="@{/cars/delete}" th:object="${newCar}" method="GET">
+    <h2>Form to delete car by ID</h2>
+    <label>Id:</label><br>
+    <input type="text"  th:field="*{id}"><br>
+    </select>
+
+
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
+
+
+<form th:action="@{/cars/getById}" th:object="${newCar}" method="POST">
+    <h2>Form get element by</h2>
+    <label>Id:</label><br>
+    <input type="text"  th:field="*{id}"><br>
+    </select>
+
+
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Brand</th>
+        <th>Model</th>
+        <th>Color</th>
+    </tr>
+    <tr th:each="car: ${carByID}">
+        <td th:text="${car.id()}"></td>
+        <td th:text="${car.brand()}"></td>
+        <td th:text="${car.model()}"></td>
+        <td th:text="${car.color()}"></td>
+    </tr>
+</table>
+
+<form th:action="@{/cars/edit}" th:object="${newCar}" method="POST">
+    <h2>Edit Car</h2>
+    <label>Id:</label><br>
+    <input type="text"  th:field="*{id}"><br>
+
+    <label >Brand:</label><br>
+    <input type="text"  th:field="*{brand}"><br>
+
+    <label >Model:</label><br>
+    <input type="text" th:field="*{model}"><br>
+
+    <label>Choose a car:</label> <br>
+    <select th:field="*{color}">
+        <option value="RED">red</option>
+        <option value="GREEN">green</option>
+        <option value="BLUE">blue</option>
+        <option value="MAGENTA">magenta</option>
+    </select>
+
+
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
+
+</body>
+</html>
